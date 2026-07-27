@@ -14,13 +14,56 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'admin') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Career Mentor</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; margin: 0; padding: 0; }
-        .navbar { background: #1a237e; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .logout-btn { background: #ff4d4d; color: white; text-decoration: none; padding: 8px 18px; border-radius: 5px; font-weight: bold; }
-        .logout-btn:hover { background: #cc0000; }
-        .container { padding: 40px; max-width: 800px; margin: auto; }
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .role-badge { background: #e8eaf6; color: #1a237e; padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; text-transform: uppercase; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #f4f7f6; margin: 0; 
+            padding: 0; 
+        }
+
+        .navbar { 
+            background: #1a237e; 
+            color: white; 
+            padding: 15px 30px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .logout-btn { 
+            background: #ff4d4d; color: white; 
+            text-decoration: none; 
+            padding: 8px 18px; 
+            border-radius: 5px; 
+            font-weight: bold; 
+        }
+
+        .logout-btn:hover { 
+            background: #cc0000; 
+        }
+
+        .container { 
+            padding: 40px; 
+            max-width: 800px; 
+            margin: auto; 
+        }
+
+        .card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        }
+
+        .role-badge { 
+            background: #e8eaf6; 
+            color: #1a237e; 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+        }
+        
     </style>
 </head>
 <body>
