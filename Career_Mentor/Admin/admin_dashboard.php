@@ -63,7 +63,7 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'admin') {
             font-weight: bold; 
             text-transform: uppercase; 
         }
-        
+
     </style>
 </head>
 <body>
@@ -77,8 +77,12 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'admin') {
     <div class="container">
         <div class="card">
             <h1>Welcome System Admin, <?= htmlspecialchars($_SESSION['fullname']); ?>! ⚡</h1>
-            <p><strong>Role:</strong> <span class="role-badge"><?= htmlspecialchars($_SESSION['role']); ?></span></p>
-            <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION['email']); ?></p>
+            <p>
+                <strong>Role:</strong> 
+                <span class="role-badge"><?= htmlspecialchars($_SESSION['role']); ?></span></p>
+            <p>
+                <strong>Email:</strong> 
+                <?= htmlspecialchars($_SESSION['email']); ?></p>
             <hr>
             <h3>Administrator Dashboard</h3>
             <p>Aapke paas system ka full access hai. Aap users, teachers, aur overall system analytics manage kar sakte hain.</p>
