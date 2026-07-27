@@ -1,6 +1,17 @@
 <?php
 session_start();
-include("db.php");
+
+// Database Connection Check Guard
+if (file_exists("db.php")) {
+    include("db.php");
+} else {
+    die("Database configuration file (db.php) missing.");
+}
+
+// Check if $conn is defined properly
+if (!isset($conn) || !$conn) {
+    die("Database Connection failed: Please check your db.php file for \$conn variable.");
+}
 
 // Initialize SweetAlert variable for errors
 $sweetAlert = null;
@@ -50,39 +61,50 @@ if (isset($_POST['signup'])) {
         ];
     } else {
         $stmt = mysqli_prepare($conn, "SELECT id FROM users WHERE email = ?");
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
 
-        if (mysqli_stmt_num_rows($stmt) > 0) {
-            $sweetAlert = [
-                'icon' => 'error',
-                'title' => 'Email Exists',
-                'text' => 'This email is already registered.'
-            ];
-            mysqli_stmt_close($stmt);
-        } else {
-            mysqli_stmt_close($stmt);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_store_result($stmt);
 
-            $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-
-            $insertStmt = mysqli_prepare($conn, "INSERT INTO users (fullname, email, password, role) VALUES (?, ?, ?, ?)");
-            mysqli_stmt_bind_param($insertStmt, "ssss", $fullname, $email, $hashPassword, $role);
-
-            if (mysqli_stmt_execute($insertStmt)) {
-                $sweetAlert = [
-                    'icon' => 'success',
-                    'title' => 'Account Created!',
-                    'text' => 'Your account has been created successfully. Please log in.'
-                ];
-            } else {
+            if (mysqli_stmt_num_rows($stmt) > 0) {
                 $sweetAlert = [
                     'icon' => 'error',
-                    'title' => 'Database Error',
-                    'text' => 'Something went wrong. Please try again.'
+                    'title' => 'Email Exists',
+                    'text' => 'This email is already registered.'
                 ];
+                mysqli_stmt_close($stmt);
+            } else {
+                mysqli_stmt_close($stmt);
+
+                $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                $insertStmt = mysqli_prepare($conn, "INSERT INTO users (fullname, email, password, role) VALUES (?, ?, ?, ?)");
+                if ($insertStmt) {
+                    mysqli_stmt_bind_param($insertStmt, "ssss", $fullname, $email, $hashPassword, $role);
+
+                    if (mysqli_stmt_execute($insertStmt)) {
+                        $sweetAlert = [
+                            'icon' => 'success',
+                            'title' => 'Account Created!',
+                            'text' => 'Your account has been created successfully. Please log in.'
+                        ];
+                    } else {
+                        $sweetAlert = [
+                            'icon' => 'error',
+                            'title' => 'Database Error',
+                            'text' => 'Something went wrong. Please try again.'
+                        ];
+                    }
+                    mysqli_stmt_close($insertStmt);
+                }
             }
-            mysqli_stmt_close($insertStmt);
+        } else {
+            $sweetAlert = [
+                'icon' => 'error',
+                'title' => 'Query Failed',
+                'text' => 'Database query preparation failed.'
+            ];
         }
     }
 }
@@ -103,45 +125,53 @@ if (isset($_POST['login'])) {
         ];
     } else {
         $stmt = mysqli_prepare($conn, "SELECT id, fullname, email, password, role FROM users WHERE email = ?");
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
 
-        if ($row = mysqli_fetch_assoc($result)) {
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
 
-            if (password_verify($password, $row['password'])) {
+            if ($row = mysqli_fetch_assoc($result)) {
 
-                $_SESSION['id']       = $row['id'];
-                $_SESSION['fullname'] = $row['fullname'];
-                $_SESSION['role']     = $row['role'];
-                $_SESSION['email']    = $row['email'];
+                if (password_verify($password, $row['password'])) {
 
-                $redirectUrl = "Student/student_dashboard.php";
+                    $_SESSION['id']       = $row['id'];
+                    $_SESSION['fullname'] = $row['fullname'];
+                    $_SESSION['role']     = $row['role'];
+                    $_SESSION['email']    = $row['email'];
 
-                if ($row['role'] === "admin") {
-                    $redirectUrl = "Admin/admin_dashboard.php";
-                } elseif ($row['role'] === "teacher") {
-                    $redirectUrl = "Teacher/teacher_dashboard.php";
+                    $redirectUrl = "Student/student_dashboard.php";
+
+                    if ($row['role'] === "admin") {
+                        $redirectUrl = "Admin/admin_dashboard.php";
+                    } elseif ($row['role'] === "teacher") {
+                        $redirectUrl = "Teacher/teacher_dashboard.php";
+                    }
+
+                    header("Location: " . $redirectUrl);
+                    exit();
+                } else {
+                    $sweetAlert = [
+                        'icon' => 'error',
+                        'title' => 'Authentication Failed',
+                        'text' => 'Wrong Password.'
+                    ];
                 }
-
-                // DIRECT REDIRECT (No Popup delay)
-                header("Location: " . $redirectUrl);
-                exit();
             } else {
                 $sweetAlert = [
                     'icon' => 'error',
-                    'title' => 'Authentication Failed',
-                    'text' => 'Wrong Password.'
+                    'title' => 'Not Found',
+                    'text' => 'Email ID not found in system.'
                 ];
             }
+            mysqli_stmt_close($stmt);
         } else {
             $sweetAlert = [
                 'icon' => 'error',
-                'title' => 'Not Found',
-                'text' => 'Email ID not found in system.'
+                'title' => 'Query Failed',
+                'text' => 'Database query execution error.'
             ];
         }
-        mysqli_stmt_close($stmt);
     }
 }
 ?>
