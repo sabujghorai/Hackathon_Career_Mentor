@@ -42,8 +42,19 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
             margin: auto; 
     }
         .card { 
-            background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .role-badge { background: #e0f0ff; color: #0066cc; padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; text-transform: uppercase; }
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        }
+        .role-badge { 
+            background: #e0f0ff; 
+            color: #0066cc; 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            text-transform: uppercase; }
     </style>
 </head>
 <body>
