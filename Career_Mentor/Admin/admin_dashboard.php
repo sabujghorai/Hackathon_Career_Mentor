@@ -44,3 +44,5 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'admin') {
 
 </body>
 </html>
+
+<div>this is a demo div</div>
