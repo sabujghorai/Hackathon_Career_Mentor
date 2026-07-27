@@ -43,4 +43,8 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'admin') {
     </div>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 7c8bb21 (updated the admin_dashboard file)
