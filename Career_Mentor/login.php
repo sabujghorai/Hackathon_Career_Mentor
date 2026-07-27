@@ -380,6 +380,7 @@ if (isset($_POST['login'])) {
             font-weight: bold;
             font-size: 14px;
         }
+
     </style>
 </head>
 
@@ -389,7 +390,7 @@ if (isset($_POST['login'])) {
         <!-- Signup Form -->
         <div class="form-container sign-up-container">
             <form action="" method="POST" id="signupForm">
-                <h1>Create Account</h1>
+                <h1>Create Account </h1>
 
                 <input type="text" name="fullname" placeholder="Full Name" required />
                 <input type="email" name="email" placeholder="Email" required />
