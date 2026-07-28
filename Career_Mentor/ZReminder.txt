@@ -1,2 +1,4 @@
 Reminders :=> 
-http://localhost/Career_Mentor/login.php 
+http://localhost/Hackathon_Career_Mentor/Career_Mentor/login.php<?php
+session_start();
+
