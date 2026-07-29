@@ -8,6 +8,7 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
     exit();
 }
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -709,17 +710,17 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
                 options: [{
                         name: "Select Career Goal",
                         icon: "fas fa-bullseye",
-                        file: "select_career_goal.php"
+                        file: "Features/select_career_goal.php"
                     },
                     {
                         name: "View Roadmap",
                         icon: "fas fa-map",
-                        file: "view_roadmap.php"
+                        file: "Features/view_roadmap.php"
                     },
                     {
                         name: "Track Progress",
                         icon: "fas fa-spinner",
-                        file: "track_progress.php"
+                        file: "Features/track_progress.php"
                     }
                 ],
             },
@@ -728,17 +729,17 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
                 options: [{
                         name: "Study Materials",
                         icon: "fas fa-book-open",
-                        file: "study_materials.php"
+                        file: "Features/study_materials.php"
                     },
                     {
                         name: "Video Resources",
                         icon: "fas fa-circle-play",
-                        file: "video_resources.php"
+                        file: "Features/video_resources.php"
                     },
                     {
                         name: "Practice Questions",
                         icon: "fas fa-pen-to-square",
-                        file: "practice_questions.php"
+                        file: "Features/practice_questions.php"
                     }
                 ],
             },
@@ -747,17 +748,17 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
                 options: [{
                         name: "Ask AI",
                         icon: "fas fa-comments",
-                        file: "ask_ai.php"
+                        file: "Features/ask_ai.php"
                     },
                     {
                         name: "Career Suggestions",
                         icon: "fas fa-wand-magic-sparkles",
-                        file: "career_suggestions.php"
+                        file: "Features/career_suggestions.php"
                     },
                     {
                         name: "Learning Suggestions",
                         icon: "fas fa-brain",
-                        file: "learning_suggestions.php"
+                        file: "Features/learning_suggestions.php"
                     }
                 ],
             },
@@ -766,17 +767,17 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
                 options: [{
                         name: "Create Resume",
                         icon: "fas fa-file-circle-plus",
-                        file: "create_resume.php"
+                        file: "Features/create_resume.php"
                     },
                     {
                         name: "Resume Analysis",
                         icon: "fas fa-file-circle-check",
-                        file: "resume_analysis.php"
+                        file: "Features/resume_analysis.php"
                     },
                     {
                         name: "Download Resume",
                         icon: "fas fa-file-arrow-down",
-                        file: "download_resume.php"
+                        file: "Features/download_resume.php"
                     }
                 ],
             },
@@ -785,17 +786,17 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
                 options: [{
                         name: "HR Questions",
                         icon: "fas fa-circle-question",
-                        file: "hr_questions.php"
+                        file: "Features/hr_questions.php"
                     },
                     {
                         name: "Technical Questions",
                         icon: "fas fa-code",
-                        file: "technical_questions.php"
+                        file: "Features/technical_questions.php"
                     },
                     {
                         name: "Mock Interview",
                         icon: "fas fa-headset",
-                        file: "mock_interview.php"
+                        file: "Features/mock_interview.php"
                     }
                 ],
             },
@@ -804,17 +805,17 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
                 options: [{
                         name: "Skill Assessment Quiz",
                         icon: "fas fa-lightbulb",
-                        file: "skill_assessment_quiz.php"
+                        file: "Features/skill_assessment_quiz.php"
                     },
                     {
                         name: "Recommended Skills",
                         icon: "fas fa-star",
-                        file: "recommended_skills.php"
+                        file: "Features/recommended_skills.php"
                     },
                     {
                         name: "Learning Resources",
                         icon: "fas fa-graduation-cap",
-                        file: "learning_resources.php"
+                        file: "Features/learning_resources.php"
                     }
                 ],
             },
@@ -823,17 +824,17 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
                 options: [{
                         name: "Internships",
                         icon: "fas fa-user-tie",
-                        file: "internships.php"
+                        file: "Features/internships.php"
                     },
                     {
                         name: "Scholarships",
                         icon: "fas fa-award",
-                        file: "scholarships.php"
+                        file: "Features/scholarships.php"
                     },
                     {
                         name: "Hackathons",
                         icon: "fas fa-laptop-code",
-                        file: "hackathons.php"
+                        file: "Features/hackathons.php"
                     }
                 ],
             },
@@ -842,17 +843,17 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'student') {
                 options: [{
                         name: "Completed Tasks",
                         icon: "fas fa-square-check",
-                        file: "completed_tasks.php"
+                        file: "Features/completed_tasks.php"
                     },
                     {
                         name: "Current Progress",
                         icon: "fas fa-chart-column",
-                        file: "current_progress.php"
+                        file: "Features/current_progress.php"
                     },
                     {
                         name: "Weekly Progress",
                         icon: "fas fa-calendar-week",
-                        file: "weekly_progress.php"
+                        file: "Features/weekly_progress.php"
                     }
                 ],
             },
